@@ -86,7 +86,7 @@ void opcontrol() {
 
 	int left, right;
 	bool iForward, iReverse;
-	bool barLeft, barRight;
+	bool liftDown, liftUp;
 
 	Motor driveBackLeft(MOTOR_BACK_LEFT);
 	Motor driveBackRight(MOTOR_BACK_RIGHT, true);
@@ -104,8 +104,8 @@ void opcontrol() {
 		iForward = joystick.get_digital(DIGITAL_R2);
 		iReverse = joystick.get_digital(DIGITAL_R1);
 
-		barLeft = joystick.get_digital(DIGITAL_L1);
-		barRight = joystick.get_digital(DIGITAL_L2);
+		liftDown = joystick.get_digital(DIGITAL_L1);
+		liftUp = joystick.get_digital(DIGITAL_L2);
 
 		driveBackLeft = left;
 		driveBackRight = right;
@@ -123,17 +123,17 @@ void opcontrol() {
 			intakeRight = 0;
 		}
 
-		if (barRight) {
+		if (liftUp) {
 			liftRight = 30;
 			liftLeft = 30;
 		}
-		else if (barLeft) {
+		else if (liftDown) {
 			liftRight = -30;
 			liftLeft = -30;
 		}
 		else {
-			intakeLeft = 0;
-			intakeRight = 0;
+			liftRight = 0;
+			liftLeft = 0;
 		}
 
 	}
