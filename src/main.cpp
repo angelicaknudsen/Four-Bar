@@ -78,8 +78,8 @@ void autonomous() {}
  #define MOTOR_BACK_RIGHT 20
  #define INTAKE_RIGHT 19
  #define INTAKE_LEFT 12
- #define LIFT_LEFT 9
- #define LIFT_RIGHT 10
+ #define LIFT_LEFT 18
+ #define LIFT_RIGHT 13
 
 void opcontrol() {
 	using namespace pros;
@@ -104,8 +104,8 @@ void opcontrol() {
 		iForward = joystick.get_digital(DIGITAL_R2);
 		iReverse = joystick.get_digital(DIGITAL_R1);
 
-		liftDown = joystick.get_digital(DIGITAL_L1);
-		liftUp = joystick.get_digital(DIGITAL_L2);
+		liftDown = joystick.get_digital(DIGITAL_L2);
+		liftUp = joystick.get_digital(DIGITAL_L1);
 
 		driveBackLeft = left;
 		driveBackRight = right;
@@ -124,12 +124,12 @@ void opcontrol() {
 		}
 
 		if (liftUp) {
-			liftRight = 30;
-			liftLeft = 30;
+			liftRight = 127;
+			liftLeft = 127;
 		}
 		else if (liftDown) {
-			liftRight = -30;
-			liftLeft = -30;
+			liftRight = -127;
+			liftLeft = -127;
 		}
 		else {
 			liftRight = 0;
