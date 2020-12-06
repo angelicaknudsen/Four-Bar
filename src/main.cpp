@@ -136,5 +136,7 @@ void opcontrol() {
 			liftLeft = 0;
 		}
 
+		delay(20); //20 milliseconds.. helps cool CPU
+
 	}
 }
