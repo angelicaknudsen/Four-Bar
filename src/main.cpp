@@ -74,8 +74,10 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 
- #define MOTOR_BACK_LEFT 11
- #define MOTOR_BACK_RIGHT 20
+ #define MOTOR_BACK_LEFT 20
+ #define MOTOR_BACK_RIGHT 11
+ #define MOTOR_FRONT_LEFT 17
+ #define MOTOR_FRONT_RIGHT 14
  #define INTAKE_RIGHT 19
  #define INTAKE_LEFT 12
  #define LIFT_LEFT 18
@@ -88,8 +90,10 @@ void opcontrol() {
 	bool iForward, iReverse;
 	bool liftDown, liftUp;
 
-	Motor driveBackLeft(MOTOR_BACK_LEFT);
-	Motor driveBackRight(MOTOR_BACK_RIGHT, true);
+	Motor driveBackLeft(MOTOR_BACK_LEFT, true);
+	Motor driveBackRight(MOTOR_BACK_RIGHT);
+	Motor driveFrontLeft(MOTOR_FRONT_LEFT, true);
+	Motor driveFrontRight(MOTOR_FRONT_RIGHT);
 	Motor intakeRight(INTAKE_RIGHT);
 	Motor intakeLeft(INTAKE_LEFT, true);
 	Motor liftLeft(LIFT_LEFT);
@@ -107,8 +111,10 @@ void opcontrol() {
 		liftDown = joystick.get_digital(DIGITAL_L2);
 		liftUp = joystick.get_digital(DIGITAL_L1);
 
-		driveBackLeft = left;
-		driveBackRight = right;
+		driveBackLeft = right;
+		driveFrontLeft = right;
+		driveBackRight = left;
+		driveFrontRight = left;
 
 		if (iForward) {
 			intakeLeft = 127;
@@ -134,6 +140,8 @@ void opcontrol() {
 		else {
 			liftRight = 0;
 			liftLeft = 0;
+			liftRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			liftLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 		}
 
 		delay(20); //20 milliseconds.. helps cool CPU
