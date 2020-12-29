@@ -117,8 +117,8 @@ void opcontrol() {
 		driveFrontRight = left;
 
 		if (iForward) {
-			intakeLeft = 127;
-			intakeRight = 127;
+			intakeLeft = 50;
+			intakeRight = 50;
 		}
 		else if (iReverse) {
 			intakeLeft = -127;
