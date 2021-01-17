@@ -58,7 +58,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -79,7 +81,7 @@ void autonomous() {}
  #define MOTOR_FRONT_LEFT 17
  #define MOTOR_FRONT_RIGHT 14
  #define INTAKE_RIGHT 19
- #define INTAKE_LEFT 12
+ #define INTAKE_LEFT 15
  #define LIFT_LEFT 18
  #define LIFT_RIGHT 13
 
@@ -105,8 +107,8 @@ void opcontrol() {
 		left = joystick.get_analog(ANALOG_LEFT_Y);
 	  right = joystick.get_analog(ANALOG_RIGHT_Y);
 
-		iForward = joystick.get_digital(DIGITAL_R2);
-		iReverse = joystick.get_digital(DIGITAL_R1);
+		iForward = joystick.get_digital(DIGITAL_R1);
+		iReverse = joystick.get_digital(DIGITAL_R2);
 
 		liftDown = joystick.get_digital(DIGITAL_L2);
 		liftUp = joystick.get_digital(DIGITAL_L1);
@@ -117,12 +119,12 @@ void opcontrol() {
 		driveFrontRight = left;
 
 		if (iForward) {
-			intakeLeft = 50;
-			intakeRight = 50;
+			intakeLeft = 127;
+			intakeRight = 127;
 		}
 		else if (iReverse) {
-			intakeLeft = -127;
-			intakeRight = -127;
+			intakeLeft = -80;
+			intakeRight = -80;
 		}
 		else {
 			intakeLeft = 0;
